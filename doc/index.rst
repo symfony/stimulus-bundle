@@ -499,8 +499,8 @@ it will normalize it:
 .. _Stimulus Documentation: https://stimulus.hotwired.dev/
 .. _`@symfony/stimulus-bridge`: https://github.com/symfony/stimulus-bridge
 .. _`Stimulus`: https://stimulus.hotwired.dev/
-.. _`Webpack Encore`: https://symfony.com/doc/current/frontend.html
-.. _`AssetMapper`: https://symfony.com/doc/current/frontend/asset-mapper.html
+.. _`Webpack Encore`: https://symfony.com/doc/current/frontend.html#webpack-encore
+.. _`AssetMapper`: https://symfony.com/doc/current/frontend.html#assetmapper
 .. _`Stimulus Controllers & Values`: https://stimulus.hotwired.dev/reference/values
 .. _`CSS Classes`: https://stimulus.hotwired.dev/reference/css-classes
 .. _`Outlets`: https://stimulus.hotwired.dev/reference/outlets
@@ -517,7 +517,7 @@ it will normalize it:
 .. _`ux-live-component`: https://symfony.com/bundles/ux-live-component/current/index.html
 .. _`ux-notify`: https://symfony.com/bundles/ux-notify/current/index.html
 .. _`ux-react`: https://symfony.com/bundles/ux-react/current/index.html
-.. _ux-translator: https://symfony.com/bundles/ux-translator/current/index.html
+.. _`ux-translator`: https://symfony.com/bundles/ux-translator/current/index.html
 .. _`ux-swup`: https://symfony.com/bundles/ux-swup/current/index.html
 .. _`ux-turbo`: https://symfony.com/bundles/ux-turbo/current/index.html
 .. _`ux-twig-component`: https://symfony.com/bundles/ux-twig-component/current/index.html
