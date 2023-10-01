@@ -9,7 +9,6 @@
 
 namespace Symfony\UX\StimulusBundle\AssetMapper;
 
-use Symfony\Component\AssetMapper\AssetDependency;
 use Symfony\Component\AssetMapper\AssetMapperInterface;
 use Symfony\Component\AssetMapper\Compiler\AssetCompilerInterface;
 use Symfony\Component\AssetMapper\Compiler\AssetCompilerPathResolverTrait;
@@ -62,11 +61,7 @@ class StimulusLoaderJavaScriptCompiler implements AssetCompilerInterface
              * and mark it as a "content" dependency so that this file's contents
              * will be recalculated when the contents of any controller changes.
              */
-            $asset->addDependency(new AssetDependency(
-                $mappedControllerAsset->asset,
-                $mappedControllerAsset->isLazy,
-                true,
-            ));
+            $asset->addDependency($mappedControllerAsset->asset);
 
             if ($mappedControllerAsset->isLazy) {
                 $lazyControllers[] = sprintf('%s: () => import(%s)', json_encode($name), json_encode($relativeImportPath, \JSON_THROW_ON_ERROR | \JSON_UNESCAPED_SLASHES));
