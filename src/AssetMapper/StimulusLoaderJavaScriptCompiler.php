@@ -62,7 +62,7 @@ class StimulusLoaderJavaScriptCompiler implements AssetCompilerInterface
              * and mark it as a "content" dependency so that this file's contents
              * will be recalculated when the contents of any controller changes.
              */
-            if (class_exists(AssetDependency::class)) {
+            if (class_exists(AssetDependency::class, false)) {
                 // Backwards compatibility with Symfony 6.3
                 $asset->addDependency(new AssetDependency(
                     $mappedControllerAsset->asset,
