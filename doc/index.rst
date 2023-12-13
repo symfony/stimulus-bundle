@@ -65,6 +65,11 @@ Use the Twig functions from this bundle to activate your controllers:
         ...
     </div>
 
+    <!-- would render -->
+    <div data-controller="hello">
+       ...
+    </div>
+
 That's it! Whenever this element appears on the page, the ``hello`` controller
 will activate.
 
@@ -159,6 +164,13 @@ Stimulus Twig Helpers
 This bundle adds 3 Twig functions/filters to help add Stimulus controllers,
 actions & targets in your templates.
 
+.. note::
+
+    Though this bundle provides these helpful functions/filters, it's recommended to
+    use raw data attributes instead. If you use PhpStorm - you may want to install
+    [Stimulus plugin](https://plugins.jetbrains.com/plugin/18940-stimulus) that will
+    bring you nice autocompletion for them.
+
 stimulus_controller
 ~~~~~~~~~~~~~~~~~~~
 
@@ -242,6 +254,12 @@ there's also a ``stimulus_controller`` filter:
     <div {{ stimulus_controller('chart', { 'name': 'Likes' })|stimulus_controller('other-controller') }}>
         Hello
     </div>
+
+    <!-- would render -->
+    <div data-controller="chart other-controller" data-chart-name-value="Likes">
+        Hello
+    </div>
+
 
 You can also retrieve the generated attributes as an array, which can be helpful e.g. for forms:
 
