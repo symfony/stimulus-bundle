@@ -109,10 +109,13 @@ The official UX packages are:
 * `ux-cropperjs`_: Form Type and tools for cropping images (`see demo <https://ux.symfony.com/cropperjs>`_)
 * `ux-dropzone`_: Form Type for stylized "drop zone" for file uploads
   (`see demo <https://ux.symfony.com/dropzone>`_)
+* `ux-icons`_: Render SVG icons from popular sets with Twig
+(`see demo <https://ux.symfony.com/icons>`_)
 * `ux-lazy-image`_: Optimize Image Loading with BlurHash
   (`see demo <https://ux.symfony.com/lazy-image>`_)
 * `ux-live-component`_: Build Dynamic Interfaces with Zero JavaScript
   (`see demo <https://ux.symfony.com/live-component>`_)
+* `ux-map`_: Integrate interactive maps (`see demo <https://ux.symfony.com/map>`_)
 * `ux-notify`_: Send server-sent native notification with Mercure
   (`see demo <https://ux.symfony.com/notify>`_)
 * `ux-react`_: Render `React`_ component from Twig (`see demo <https://ux.symfony.com/react>`_)
@@ -553,8 +556,10 @@ it will normalize it:
 .. _`ux-chartjs`: https://symfony.com/bundles/ux-chartjs/current/index.html
 .. _`ux-cropperjs`: https://symfony.com/bundles/ux-cropperjs/current/index.html
 .. _`ux-dropzone`: https://symfony.com/bundles/ux-dropzone/current/index.html
+.. _`ux-icons`: https://symfony.com/bundles/ux-icons/current/index.html
 .. _`ux-lazy-image`: https://symfony.com/bundles/ux-lazy-image/current/index.html
 .. _`ux-live-component`: https://symfony.com/bundles/ux-live-component/current/index.html
+.. _`ux-map`: https://symfony.com/bundles/ux-map/current/index.html
 .. _`ux-notify`: https://symfony.com/bundles/ux-notify/current/index.html
 .. _`ux-react`: https://symfony.com/bundles/ux-react/current/index.html
 .. _ux-translator: https://symfony.com/bundles/ux-translator/current/index.html
