@@ -239,7 +239,10 @@ And with outlets:
 
 .. code-block:: html+twig
 
-    <div {{ stimulus_controller('chart', { 'name': 'Likes', 'data': [1, 2, 3, 4] }, { 'loading': 'spinner' }, { 'other': '.target' ) }}>
+    <div {{ stimulus_controller('chart',
+            { 'name': 'Likes', 'data': [1, 2, 3, 4] }, 
+            { 'loading': 'spinner' }, 
+            { 'other': '.target' } ) }}>
         Hello
     </div>
 
