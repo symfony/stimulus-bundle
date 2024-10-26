@@ -20,7 +20,7 @@ use Symfony\UX\StimulusBundle\AssetMapper\ControllersMapGenerator;
 use Symfony\UX\StimulusBundle\AssetMapper\MappedControllerAutoImport;
 use Symfony\UX\StimulusBundle\Ux\UxPackageReader;
 
-class ControllerMapGeneratorTest extends TestCase
+class ControllersMapGeneratorTest extends TestCase
 {
     public function testGetControllersMap()
     {
@@ -41,7 +41,12 @@ class ControllerMapGeneratorTest extends TestCase
                     $logicalPath = substr($path, $assetsPosition + 1);
                 }
 
-                return new MappedAsset($logicalPath, $path, content: file_get_contents($path));
+                $content = null;
+                if (str_ends_with($path, 'minified-controller.js')) {
+                    $content = 'import{Controller}from"@hotwired/stimulus";export default class extends Controller{}';
+                }
+
+                return new MappedAsset($logicalPath, $path, content: $content);
             });
 
         $packageReader = new UxPackageReader(__DIR__.'/../fixtures');
@@ -73,8 +78,8 @@ class ControllerMapGeneratorTest extends TestCase
         $map = $generator->getControllersMap();
         // + 3 controller.json UX controllers
         // - 1 controllers.json UX controller is disabled
-        // + 9 custom controllers (1 file is not a controller & 1 is overridden)
-        $this->assertCount(11, $map);
+        // + 10 custom controllers (1 file is not a controller & 1 is overridden)
+        $this->assertCount(12, $map);
         $packageNames = array_keys($map);
         sort($packageNames);
         $this->assertSame([
@@ -84,6 +89,7 @@ class ControllerMapGeneratorTest extends TestCase
             'hello',
             'hello-with-dashes',
             'hello-with-underscores',
+            'minified',
             'other',
             'subdir--deeper',
             'subdir--deeper-with-dashes',
@@ -115,5 +121,8 @@ class ControllerMapGeneratorTest extends TestCase
 
         $otherController = $map['other'];
         $this->assertTrue($otherController->isLazy);
+
+        $minifiedController = $map['minified'];
+        $this->assertTrue($minifiedController->isLazy);
     }
 }

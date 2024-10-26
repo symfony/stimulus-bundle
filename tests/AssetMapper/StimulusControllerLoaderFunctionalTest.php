@@ -63,8 +63,9 @@ class StimulusControllerLoaderFunctionalTest extends WebTestCase
                 // 2x from UX packages, which are enabled in controllers.json
                 '/assets/fake-vendor/ux-package1/package-controller-second.js',
                 '/assets/fake-vendor/ux-package2/package-hello-controller.js',
-                // 2x from more-controllers
+                // 3x from more-controllers
                 '/assets/more-controllers/hello-controller.js',
+                '/assets/more-controllers/minified-controller.js',
                 '/assets/more-controllers/other-controller.js',
                 // 5x from importmap.php
                 '@hotwired/stimulus',
