@@ -157,8 +157,9 @@ To make a third-party controller lazy, in ``assets/controllers.json``, set
 
 .. note::
 
-    If you write your controllers using TypeScript, make sure
-    ``removeComments`` is not set to ``true`` in your TypeScript config.
+    If you write your controllers using TypeScript and you're using
+    StimulusBundle ≤ 2.21.0, make sure ``removeComments`` is not set
+    to ``true`` in your TypeScript config.
 
 Stimulus Tools around the World
 -------------------------------
