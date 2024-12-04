@@ -14,11 +14,11 @@
  */
 import { Application, type ControllerConstructor } from '@hotwired/stimulus';
 import {
-    eagerControllers,
-    lazyControllers,
-    isApplicationDebug,
     type EagerControllersCollection,
     type LazyControllersCollection,
+    eagerControllers,
+    isApplicationDebug,
+    lazyControllers,
 } from './controllers.js';
 
 const controllerAttribute = 'data-controller';
