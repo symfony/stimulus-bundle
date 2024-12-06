@@ -120,7 +120,7 @@ The official UX packages are:
 * `ux-swup`_: Integration with `Swup`_ (`see demo <https://ux.symfony.com/swup>`_)
 * `ux-toggle-password`_: Toggle visibility of password inputs
   (`see demo <https://ux.symfony.com/toggle-password>`_)
-* `ux-translator`_: Use your Symfony translations in JavaScript `Swup`_ (`see demo <https://ux.symfony.com/translator>`_)
+* `ux-translator`_: Use your Symfony translations in JavaScript (`see demo <https://ux.symfony.com/translator>`_)
 * `ux-turbo`_: Integration with `Turbo Drive`_ for a single-page-app experience
   (`see demo <https://ux.symfony.com/turbo>`_)
 * `ux-twig-component`_: Build Twig Components Backed by a PHP Class
