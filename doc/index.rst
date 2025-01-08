@@ -574,7 +574,7 @@ it will normalize it:
 .. _`Typed`: https://github.com/mattboldt/typed.js/
 .. _`Vue`: https://vuejs.org/
 .. _`stimulus-use`: https://stimulus-use.github.io/stimulus-use
-.. _`stimulus-components`: https://stimulus-components.netlify.app/
+.. _`stimulus-components`: https://www.stimulus-components.com/
 .. _`TypeScript`: https://www.typescriptlang.org/
 .. _`sensiolabs/typescript-bundle`: https://github.com/sensiolabs/AssetMapperTypeScriptBundle
 .. _`Stimulus plugin`: https://plugins.jetbrains.com/plugin/24562-stimulus
