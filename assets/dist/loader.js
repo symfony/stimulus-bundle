@@ -25,30 +25,50 @@ class StimulusLazyControllerHandler {
         this.lazyLoadNewControllers(document.documentElement);
     }
     lazyLoadExistingControllers(element) {
-        this.queryControllerNamesWithin(element).forEach((controllerName) => this.loadLazyController(controllerName));
+        Array.from(element.querySelectorAll(`[${controllerAttribute}]`))
+            .flatMap(extractControllerNamesFrom)
+            .forEach((controllerName) => this.loadLazyController(controllerName));
     }
-    async loadLazyController(name) {
-        if (canRegisterController(name, this.application)) {
-            if (this.lazyControllers[name] === undefined) {
-                return;
-            }
-            const controllerModule = await this.lazyControllers[name]();
-            registerController(name, controllerModule.default, this.application);
+    loadLazyController(name) {
+        if (!this.lazyControllers[name]) {
+            return;
         }
+        const controllerLoader = this.lazyControllers[name];
+        delete this.lazyControllers[name];
+        if (!canRegisterController(name, this.application)) {
+            return;
+        }
+        this.application.logDebugActivity(name, 'lazy:loading');
+        controllerLoader()
+            .then((controllerModule) => {
+            this.application.logDebugActivity(name, 'lazy:loaded');
+            registerController(name, controllerModule.default, this.application);
+        })
+            .catch((error) => {
+            console.error(`Error loading controller "${name}":`, error);
+        });
     }
     lazyLoadNewControllers(element) {
+        if (Object.keys(this.lazyControllers).length === 0) {
+            return;
+        }
         new MutationObserver((mutationsList) => {
-            for (const { attributeName, target, type } of mutationsList) {
-                switch (type) {
-                    case 'attributes': {
-                        if (attributeName === controllerAttribute &&
-                            target.getAttribute(controllerAttribute)) {
-                            extractControllerNamesFrom(target).forEach((controllerName) => this.loadLazyController(controllerName));
+            for (const mutation of mutationsList) {
+                switch (mutation.type) {
+                    case 'childList': {
+                        for (const node of mutation.addedNodes) {
+                            if (node instanceof Element) {
+                                extractControllerNamesFrom(node).forEach((controllerName) => {
+                                    this.loadLazyController(controllerName);
+                                });
+                            }
                         }
                         break;
                     }
-                    case 'childList': {
-                        this.lazyLoadExistingControllers(target);
+                    case 'attributes': {
+                        if (mutation.attributeName === controllerAttribute) {
+                            extractControllerNamesFrom(mutation.target).forEach((controllerName) => this.loadLazyController(controllerName));
+                        }
                     }
                 }
             }
@@ -57,9 +77,6 @@ class StimulusLazyControllerHandler {
             subtree: true,
             childList: true,
         });
-    }
-    queryControllerNamesWithin(element) {
-        return Array.from(element.querySelectorAll(`[${controllerAttribute}]`)).flatMap(extractControllerNamesFrom);
     }
 }
 function registerController(name, controller, application) {
