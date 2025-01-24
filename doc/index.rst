@@ -429,7 +429,7 @@ The recipe will update your ``assets/bootstrap.js`` file to look like this:
 .. code-block:: javascript
 
     // assets/bootstrap.js
-    import { startStimulusApp } from '@symfony/stimulus-bundle';
+    import { startStimulusApp } from '@symfony/stimulus-bridge';
 
     const app = startStimulusApp();
 
