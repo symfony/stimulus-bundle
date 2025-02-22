@@ -53,22 +53,17 @@ class StimulusLazyControllerHandler {
             return;
         }
         new MutationObserver((mutationsList) => {
-            for (const mutation of mutationsList) {
-                switch (mutation.type) {
-                    case 'childList': {
-                        for (const node of mutation.addedNodes) {
-                            if (node instanceof Element) {
-                                extractControllerNamesFrom(node).forEach((controllerName) => {
-                                    this.loadLazyController(controllerName);
-                                });
-                            }
+            for (const { attributeName, target, type } of mutationsList) {
+                switch (type) {
+                    case 'attributes': {
+                        if (attributeName === controllerAttribute &&
+                            target.getAttribute(controllerAttribute)) {
+                            extractControllerNamesFrom(target).forEach((controllerName) => this.loadLazyController(controllerName));
                         }
                         break;
                     }
-                    case 'attributes': {
-                        if (mutation.attributeName === controllerAttribute) {
-                            extractControllerNamesFrom(mutation.target).forEach((controllerName) => this.loadLazyController(controllerName));
-                        }
+                    case 'childList': {
+                        this.lazyLoadExistingControllers(target);
                     }
                 }
             }
