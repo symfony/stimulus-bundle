@@ -1,8 +1,17 @@
 {
     "name": "@symfony/stimulus-bundle",
     "description": "Integration of @hotwired/stimulus into Symfony",
-    "version": "1.0.0",
     "license": "MIT",
+    "version": "2.23.0",
+    "keywords": [
+        "symfony-ux"
+    ],
+    "homepage": "https://ux.symfony.com/stimulus",
+    "repository": "https://github.com/symfony/stimulus-bundle/tree/2.x",
+    "type": "module",
+    "files": [
+        "dist"
+    ],
     "main": "dist/loader.js",
     "scripts": {
         "build": "node ../../../bin/build_package.js .",
