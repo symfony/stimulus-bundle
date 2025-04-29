@@ -70,6 +70,11 @@ class ControllersMapGenerator
 
         $controllersMap = [];
         foreach ($finder as $file) {
+            // Skip .ts controller if .js version is available
+            if ('ts' === $file->getExtension() && file_exists(substr($file->getRealPath(), 0, -2).'js')) {
+                continue;
+            }
+
             $name = $file->getRelativePathname();
             // use regex to extract 'controller'-postfix including extension
             preg_match(self::FILENAME_REGEX, $name, $matches);
@@ -77,6 +82,10 @@ class ControllersMapGenerator
             $name = str_replace(['_', '/', '\\'], ['-', '--', '--'], $name);
 
             $asset = $this->assetMapper->getAssetFromSourcePath($file->getRealPath());
+            if (!$asset) {
+                throw new \RuntimeException(\sprintf('Could not find an asset mapper path that points to the "%s" controller.', $name));
+            }
+
             $content = file_get_contents($asset->sourcePath);
             $isLazy = preg_match('/\/\*\s*stimulusFetch:\s*\'lazy\'\s*\*\//i', $content);
 
