@@ -34,6 +34,8 @@ class ControllersMapGeneratorTest extends TestCase
                     $logicalPath = 'fake-vendor/ux-package1/package-controller-second.js';
                 } elseif (str_ends_with($path, 'package-hello-controller.js')) {
                     $logicalPath = 'fake-vendor/ux-package2/package-hello-controller.js';
+                } elseif (str_ends_with($path, 'other-controller.ts') || str_ends_with($path, 'excluded-controller.js')) {
+                    return null;
                 } else {
                     // replace windows slashes
                     $path = str_replace('\\', '/', $path);
@@ -75,15 +77,18 @@ class ControllersMapGeneratorTest extends TestCase
             $autoImportLocator,
         );
 
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Could not find an asset mapper path that points to the "excluded" controller.');
         $map = $generator->getControllersMap();
         // + 3 controller.json UX controllers
         // - 1 controllers.json UX controller is disabled
-        // + 10 custom controllers (1 file is not a controller & 1 is overridden)
-        $this->assertCount(12, $map);
+        // + 11 custom controllers (1 file is not a controller, 1 is overridden)
+        $this->assertCount(13, $map);
         $packageNames = array_keys($map);
         sort($packageNames);
         $this->assertSame([
             'bye',
+            'excluded',
             'fake-vendor--ux-package1--controller-second',
             'fake-vendor--ux-package2--hello-controller',
             'hello',
