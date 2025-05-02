@@ -174,15 +174,15 @@ For example:
 
 .. code-block:: html+twig
 
-    <div {{ stimulus_controller('chart', { 'name': 'Likes', 'data': [1, 2, 3, 4] }) }}>
+    <div {{ stimulus_controller('hello', { 'name': 'World', 'data': [1, 2, 3, 4] }) }}>
         Hello
     </div>
 
     <!-- would render -->
     <div
-       data-controller="chart"
-       data-chart-name-value="Likes"
-       data-chart-data-value="&#x5B;1,2,3,4&#x5D;"
+       data-controller="hello"
+       data-hello-name-value="World"
+       data-hello-data-value="&#x5B;1,2,3,4&#x5D;"
     >
        Hello
     </div>
@@ -191,22 +191,22 @@ If you want to set CSS classes:
 
 .. code-block:: html+twig
 
-    <div {{ stimulus_controller('chart', { 'name': 'Likes', 'data': [1, 2, 3, 4] }, { 'loading': 'spinner' }) }}>
+    <div {{ stimulus_controller('hello', { 'name': 'World', 'data': [1, 2, 3, 4] }, { 'loading': 'spinner' }) }}>
         Hello
     </div>
 
     <!-- would render -->
     <div
-       data-controller="chart"
-       data-chart-name-value="Likes"
-       data-chart-data-value="&#x5B;1,2,3,4&#x5D;"
-       data-chart-loading-class="spinner"
+       data-controller="hello"
+       data-hello-name-value="World"
+       data-hello-data-value="&#x5B;1,2,3,4&#x5D;"
+       data-hello-loading-class="spinner"
     >
        Hello
     </div>
 
     <!-- or without values -->
-    <div {{ stimulus_controller('chart', controllerClasses = { 'loading': 'spinner' }) }}>
+    <div {{ stimulus_controller('hello', controllerClasses: { 'loading': 'spinner' }) }}>
         Hello
     </div>
 
@@ -214,8 +214,8 @@ And with outlets:
 
 .. code-block:: html+twig
 
-    <div {{ stimulus_controller('chart',
-            { 'name': 'Likes', 'data': [1, 2, 3, 4] },
+    <div {{ stimulus_controller('hello',
+            { 'name': 'World', 'data': [1, 2, 3, 4] },
             { 'loading': 'spinner' },
             { 'other': '.target' } ) }}>
         Hello
@@ -223,17 +223,17 @@ And with outlets:
 
     <!-- would render -->
     <div
-       data-controller="chart"
-       data-chart-name-value="Likes"
-       data-chart-data-value="&#x5B;1,2,3,4&#x5D;"
-       data-chart-loading-class="spinner"
-       data-chart-other-outlet=".target"
+       data-controller="hello"
+       data-hello-name-value="World"
+       data-hello-data-value="&#x5B;1,2,3,4&#x5D;"
+       data-hello-loading-class="spinner"
+       data-hello-other-outlet=".target"
     >
        Hello
     </div>
 
     <!-- or without values/classes -->
-    <div {{ stimulus_controller('chart', controllerOutlets = { 'other': '.target' }) }}>
+    <div {{ stimulus_controller('hello', controllerOutlets: { 'other': '.target' }) }}>
         Hello
     </div>
 
@@ -246,12 +246,12 @@ there's also a ``stimulus_controller`` filter:
 
 .. code-block:: html+twig
 
-    <div {{ stimulus_controller('chart', { 'name': 'Likes' })|stimulus_controller('other-controller') }}>
+    <div {{ stimulus_controller('hello', { 'name': 'World' })|stimulus_controller('other-controller') }}>
         Hello
     </div>
 
     <!-- would render -->
-    <div data-controller="chart other-controller" data-chart-name-value="Likes">
+    <div data-controller="hello other-controller" data-hello-name-value="World">
         Hello
     </div>
 
@@ -259,7 +259,7 @@ You can also retrieve the generated attributes as an array, which can be helpful
 
 .. code-block:: twig
 
-    {{ form_start(form, { attr: stimulus_controller('chart', { 'name': 'Likes' }).toArray() }) }}
+    {{ form_start(form, { attr: stimulus_controller('hello', { 'name': 'World' }).toArray() }) }}
 
 stimulus_action
 ~~~~~~~~~~~~~~~
