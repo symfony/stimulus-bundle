@@ -3,8 +3,8 @@ import { waitFor } from '@testing-library/dom';
 import { describe, expect, it } from 'vitest';
 // load from dist because the source TypeScript file points directly to controllers.js,
 // which does not actually exist in the source code
-import { loadControllers } from '../dist/loader';
-import type { EagerControllersCollection, LazyControllersCollection } from '../src/controllers';
+import { loadControllers } from '../../dist/loader';
+import type { EagerControllersCollection, LazyControllersCollection } from '../../src/controllers';
 
 let isController1Initialized = false;
 let isController2Initialized = false;
